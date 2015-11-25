@@ -78,6 +78,7 @@ RUN rm -rf /${LUA_NGINX_MODULE}
 # TODO: Remove env vars used only for build?
 
 copy nginx.conf /nginx/conf/nginx.conf
+copy nginx-lua.conf /nginx/conf/nginx-lua.conf
 
 # This is the default CMD used by nginx:1.9.2 image
 CMD ["nginx", "-g", "daemon off;"]
