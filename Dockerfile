@@ -6,6 +6,9 @@ ENV VER_LUA_NGINX_MODULE=0.9.16
 ENV VER_NGINX=1.9.3
 ENV VER_LUAJIT=2.0.4
 
+ENV VER_LUA_RESTY_REDIS=0.21
+ENV LUA__RESTY_REDIS lua-resty-redis-${VER_LUA_RESTY_REDIS}
+
 ENV NGINX_DEVEL_KIT ngx_devel_kit-${VER_NGINX_DEVEL_KIT}
 ENV LUA_NGINX_MODULE lua-nginx-module-${VER_LUA_NGINX_MODULE}
 ENV NGINX_ROOT=/nginx
@@ -36,11 +39,17 @@ RUN wget http://nginx.org/download/nginx-${VER_NGINX}.tar.gz
 RUN wget http://luajit.org/download/LuaJIT-${VER_LUAJIT}.tar.gz
 RUN wget https://github.com/simpl/ngx_devel_kit/archive/v${VER_NGINX_DEVEL_KIT}.tar.gz -O ${NGINX_DEVEL_KIT}.tar.gz
 RUN wget https://github.com/openresty/lua-nginx-module/archive/v${VER_LUA_NGINX_MODULE}.tar.gz -O ${LUA_NGINX_MODULE}.tar.gz
+
+RUN wget https://github.com/openresty/lua-resty-redis/archive/v${VER_LUA_RESTY_REDIS}.tar.gz -O ${LUA_RESTY_REDIS}.tar.gz
+         
+
 # Untar
 RUN tar -xzvf nginx-${VER_NGINX}.tar.gz && rm nginx-${VER_NGINX}.tar.gz
 RUN tar -xzvf LuaJIT-${VER_LUAJIT}.tar.gz && rm LuaJIT-${VER_LUAJIT}.tar.gz
 RUN tar -xzvf ${NGINX_DEVEL_KIT}.tar.gz && rm ${NGINX_DEVEL_KIT}.tar.gz
 RUN tar -xzvf ${LUA_NGINX_MODULE}.tar.gz && rm ${LUA_NGINX_MODULE}.tar.gz
+
+RUN tar -xzvf ${LUA_RESTY_REDIS}.tar.gz && rm ${LUA_RESTY_REDIS}.tar.gz
 
 # ***** BUILD FROM SOURCE *****
 
