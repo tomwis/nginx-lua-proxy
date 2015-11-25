@@ -1,1 +1,1 @@
-docker build -t "danday74/nginx-lua" .
+docker build -t "ermlab/nginx-lua" .
