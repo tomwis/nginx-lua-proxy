@@ -59,7 +59,7 @@ RUN tar -xzvf ${LUA_NGINX_MODULE}.tar.gz && rm ${LUA_NGINX_MODULE}.tar.gz
 RUN tar -xzvf ${LUA_RESTY_REDIS}.tar.gz && rm ${LUA_RESTY_REDIS}.tar.gz
 
 # copy openresty libraries to LUAJIT_LIB
-RUN cp -r ${LUA_RESTY_REDIS} ${LUAJIT_LIB}
+RUN cp -r ${LUA_RESTY_REDIS}/lib ${LUAJIT_LIB}/lua-libs
 
 
 # ***** BUILD FROM SOURCE *****
