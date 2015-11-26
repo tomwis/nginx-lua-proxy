@@ -1,4 +1,14 @@
 # Based on manual compile instructions at http://wiki.nginx.org/HttpLuaModule#Installation
+
+
+# To build:
+#
+# 1) Install docker (http://docker.io)
+# 2) Clone Nginx-Hipache repo if you haven't already: git clone
+# 3) Build: cd ...... && docker build .
+# 4) Run: docker run -d --name redis redis
+# 5) Run: docker run -d --link redis:redis -P <hipache_image_id>
+
 FROM ubuntu:14.04
 
 ENV VER_NGINX_DEVEL_KIT=0.2.19
