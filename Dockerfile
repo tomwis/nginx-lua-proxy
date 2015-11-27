@@ -36,6 +36,7 @@ RUN apt-get -qq -y install wget
 
 # Instal lighweight DNS for proper nginx name resolution based on /etc/hosts
 RUN apt-get -qq -y install dnsmasq
+#RUN -i 's/#user=/user=root/g'
 
 # ***** BUILD DEPENDENCIES *****
 
