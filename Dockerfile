@@ -34,6 +34,9 @@ ENV LUAJIT_INC /usr/local/include/luajit-2.0
 RUN apt-get -qq update
 RUN apt-get -qq -y install wget
 
+# Instal lighweight DNS for proper nginx name resolution based on /etc/hosts
+RUN apt-get -qq -y install dnsmasq
+
 # ***** BUILD DEPENDENCIES *****
 
 # Common dependencies (Nginx and LUAJit)
