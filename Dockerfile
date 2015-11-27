@@ -36,7 +36,8 @@ RUN apt-get -qq -y install wget
 
 # Instal lighweight DNS for proper nginx name resolution based on /etc/hosts
 RUN apt-get -qq -y install dnsmasq
-#RUN -i 's/#user=/user=root/g'
+#fix for dnsmasq in docker, it must run as user root:
+RUN sed -i 's/#user=/user=root/g' /etc/dnsmasq.conf
 
 # ***** BUILD DEPENDENCIES *****
 
