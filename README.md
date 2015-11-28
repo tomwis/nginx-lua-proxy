@@ -1,59 +1,61 @@
-nginx-lua
+nginx-lua-proxy
 =========
 
 ![Docker stars](https://img.shields.io/docker/stars/ermlab/nginx-lua.png "Docker stars")
 &nbsp;
-![Docker pulls](https://img.shields.io/docker/pulls/danday74/nginx-lua.png "Docker pulls")
+![Docker pulls](https://img.shields.io/docker/pulls/ermlab/nginx-lua.png "Docker pulls")
 
-[![Docker repo](https://github.com/danday74/docker-nginx-lua/blob/master/images/docker.png?raw=true "Docker repo")](https://registry.hub.docker.com/u/danday74/nginx-lua)
+[![Docker repo](https://github.com/Ermlab/nginx-lua-proxy/blob/master/images/docker.png?raw=true "Docker repo")](https://registry.hub.docker.com/u/danday74/nginx-lua)
 &nbsp;
-[![Github repo](https://github.com/danday74/docker-nginx-lua/blob/master/images/github.png?raw=true "Github repo")](https://github.com/danday74/docker-nginx-lua)
+[![Github repo](https://github.com/Ermlab/nginx-lua-proxy/blob/master/images/github.png?raw=true "Github repo")](https://github.com/Ermlab/nginx-lua-proxy)
 
-Dockerised Nginx, with Lua module, built from source + dynamic upstream like hipache (https://github.com/hipache/hipache)
+Dockerized Nginx+Lua dynamic proxy.
 
-Merge two repositories togather:
+The main goal is to build the counterpart of hipache (https://github.com/hipache/hipache). The proxy try to find the host in redis database
+and use it as upstream server.
+The data stored in redis is in the same format as in hipache. All code is built from source.
+
+This procject is based on wonderfull projects:
 * https://github.com/danday74/docker-nginx-lua
 * https://github.com/samalba/hipache-nginx
-
-
-The docker image is based on the manual compilation instructions at ...
-
-[http://wiki.nginx.org/HttpLuaModule#Installation](http://wiki.nginx.org/HttpLuaModule#Installation)
-
-
-
-Useful for those who want Nginx with Lua but don't want to use OpenResty
 
 Usage
 -----
 
-1. Create your own **Dockerfile** ...
+1. Run REDIS database, it is essential to name it **redis**, because the lua resty redis connection objects relies on hostname=redis,
 
     ```
-    FROM ermlab/nginx-lua
-    COPY /your/nginx.conf /nginx/conf/nginx.conf
+    docker run -d --name redis redis
     ```
 
-2. Add this location block to your **nginx.conf** file
+2. Run nginx-lua-proxy container and linked it with redis
 
     ```
-    location /hellolua {
-        content_by_lua '
-            ngx.header["Content-Type"] = "text/plain";
-            ngx.say("hello world");
-        ';
-    }
+    docker run -d --link redis:redis -p 9090:80 --name $CONTAINER_NAME $IMAGE
     ```
 
-    If you don't have an **nginx.conf** file then use [the conf file](https://raw.githubusercontent.com/danday74/docker-nginx-lua/master/nginx.conf) provided in the github repo
 
-    The conf file provided is the default generated conf file with the above location block added
+3. Add to redis some hosts
+   ```
+   $ redis-cli rpush frontend:dynamic1.example.com mywebsite
+   $ redis-cli rpush frontend:dynamic1.example.com http://192.168.0.50:80
 
-3. Build your docker image
+   $ redis-cli rpush frontend:dynamic2.example.com mywebsite
+   $ redis-cli rpush frontend:dynamic2.example.com http://192.168.0.100:80
+   ```
 
-4. Run your docker container - Remember to use **-p YOUR_PORT:80** in your docker run statement
+4. Check if everything is working
 
-5. Visit http://localhost:YOUR_PORT/hellolua
+   ```
+   curl -H 'Host: dynamic1.example.com' http://localhost:9090
+
+   or
+
+   curl -H 'Host: dynamic2.example.com' http://localhost:9090
+   ```
+
+5. If you want to test in the browser you should set the dns wildcard for domain \*.example.com and it should point to your nginx proxy
+
 
 
 
