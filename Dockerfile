@@ -82,22 +82,17 @@ RUN cp -r ${LUA_RESTY_REDIS}/lib ${LUAJIT_LIB}/lua-libs
 
 # ***** BUILD FROM SOURCE *****
 
-
-
 # LuaJIT
 WORKDIR /LuaJIT-${VER_LUAJIT}
 RUN make
 RUN make install
+
 # Nginx with LuaJIT
 WORKDIR /nginx-${VER_NGINX}
 RUN ./configure --prefix=${NGINX_ROOT} --with-ld-opt="-Wl,-rpath,${LUAJIT_LIB}" --add-module=/${NGINX_DEVEL_KIT} --add-module=/${LUA_NGINX_MODULE}
 RUN make -j2
 RUN make install
 RUN ln -s ${NGINX_ROOT}/sbin/nginx /usr/local/sbin/nginx
-
-
-
-
 
 # ***** MISC *****
 WORKDIR ${WEB_DIR}
