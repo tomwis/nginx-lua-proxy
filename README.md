@@ -111,9 +111,14 @@ Which builds docker image **ermlab/nginx-lua** on push to master
 
 On success, the docker build triggers the docker repo's webhooks (if any)
 
+Maintainers
+-------------
+* [Ermlab software house](http://ermlab.com)
+    * Krzysztof Sopyła (sopyla@ermlab.com)
+
 License
 -------
 
 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
-APACHE LICENSE-2.0 ... In other words, please use freely and do whatever you want with it!
+APACHE LICENSE-2.0 ... In other words, please use freely and do whatever you want with it for good of all people :)
