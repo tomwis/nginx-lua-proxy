@@ -1,7 +1,7 @@
 nginx-lua-proxy - dockerized Nginx+Lua dynamic proxy with redis store for backends
 =========
 
-![Docker stars](https://img.shields.io/docker/stars/ermlab/nginx-lua.png "Docker stars")
+![Docker stars](https://img.shields.io/docker/stars/ermlab/nginx-lua-pp.png "Docker stars")
 &nbsp;
 ![Docker pulls](https://img.shields.io/docker/pulls/ermlab/nginx-lua.png "Docker pulls")
 
@@ -86,7 +86,7 @@ Failed requests:       | 0 | 0
 Write errors:          | 0 | 0
 Total transferred:     | 6500000 bytes | 6380000 bytes
 HTML transferred:      |2680000 bytes | 2560000 bytes
-Requests per second:   | **348.15 [#/sec] (mean)** | **1337.68 [#/sec] (mean)**
+Requests per second:   | **348.15 \[#/sec\] (mean)** | **1337.68 \[#/sec\] (mean)**
 Time per request:      | 348.464 [ms] (mean) | 149.513 [ms] (mean)
 Time per request:      | 2.872 [ms] | 0.748 [ms]
 Transfer rate:         | 110.50 [Kbytes/sec] | 416.65 [Kbytes/sec]
@@ -127,8 +127,8 @@ Total:      |    5 | 477 | 744.6 |    400 |  15350
    95%  |  794 |  152
    98%  |  897 | 1098
    99%  | 1032 | 1115
-  100% (longest request) |15350 |  3298 
-  
+  100% (longest request) |15350 |  3298
+
 
 VHOST Configuration
 -------------------
