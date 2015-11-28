@@ -10,6 +10,7 @@
 # 5) Run: docker run -d --link redis:redis -P <hipache_image_id>
 
 FROM ubuntu:14.04
+MAINTAINER Krzysztof Sopyła <sopyla@ermlab.com>
 
 ENV VER_NGINX_DEVEL_KIT=0.2.19
 ENV VER_LUA_NGINX_MODULE=0.9.16
@@ -32,12 +33,14 @@ ENV LUAJIT_LIB /usr/local/lib
 ENV LUAJIT_INC /usr/local/include/luajit-2.0
 
 RUN apt-get -qq update
-RUN apt-get -qq -y install wget
+RUN apt-get -qq -y install wget supervisor
 
 # Instal lighweight DNS for proper nginx name resolution based on /etc/hosts
 RUN apt-get -qq -y install dnsmasq
 #fix for dnsmasq in docker, it must run as user root:
 RUN sed -i 's/#user=/user=root/g' /etc/dnsmasq.conf
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # ***** BUILD DEPENDENCIES *****
 
@@ -113,4 +116,5 @@ copy nginx.conf /nginx/conf/nginx.conf
 copy nginx-lua.conf /nginx/conf/nginx-lua.conf
 
 # This is the default CMD used by nginx:1.9.2 image
-CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"]
+CMD ["/usr/bin/supervisord"]
