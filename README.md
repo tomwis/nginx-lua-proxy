@@ -1,9 +1,9 @@
 nginx-lua-proxy - dockerized Nginx+Lua dynamic proxy with redis store for backends
 =========
 
-![Docker stars](https://img.shields.io/docker/stars/ermlab/nginx-lua-pp.png "Docker stars")
+![Docker stars](https://img.shields.io/docker/stars/ermlab/nginx-lua-proxy.png "Docker stars")
 &nbsp;
-![Docker pulls](https://img.shields.io/docker/pulls/ermlab/nginx-lua.png "Docker pulls")
+![Docker pulls](https://img.shields.io/docker/pulls/ermlab/nginx-lua-proxy.png "Docker pulls")
 
 [![Docker repo](https://github.com/Ermlab/nginx-lua-proxy/blob/master/images/docker.png?raw=true "Docker repo")](https://registry.hub.docker.com/u/Ermlab/nginx-lua-proxy)
 &nbsp;
