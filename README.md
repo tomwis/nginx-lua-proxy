@@ -1,18 +1,17 @@
-nginx-lua-proxy
+nginx-lua-proxy - dockerized Nginx+Lua dynamic proxy with redis store for backends
 =========
 
 ![Docker stars](https://img.shields.io/docker/stars/ermlab/nginx-lua.png "Docker stars")
 &nbsp;
 ![Docker pulls](https://img.shields.io/docker/pulls/ermlab/nginx-lua.png "Docker pulls")
 
-[![Docker repo](https://github.com/Ermlab/nginx-lua-proxy/blob/master/images/docker.png?raw=true "Docker repo")](https://registry.hub.docker.com/u/danday74/nginx-lua)
+[![Docker repo](https://github.com/Ermlab/nginx-lua-proxy/blob/master/images/docker.png?raw=true "Docker repo")](https://registry.hub.docker.com/u/Ermlab/nginx-lua-proxy)
 &nbsp;
 [![Github repo](https://github.com/Ermlab/nginx-lua-proxy/blob/master/images/github.png?raw=true "Github repo")](https://github.com/Ermlab/nginx-lua-proxy)
 
-Dockerized Nginx+Lua dynamic proxy.
+The main goal is to build the counterpart of hipache (https://github.com/hipache/hipache) with nginx.
+The proxy tries to find the host in redis database and without the reloading (proxy server) use it as upstream server.
 
-The main goal is to build the counterpart of hipache (https://github.com/hipache/hipache). The proxy try to find the host in redis database
-and use it as upstream server.
 The data stored in redis is in the same format as in hipache. All code is built from source.
 
 This procject is based on wonderfull projects:
@@ -56,7 +55,12 @@ Usage
 
 5. If you want to test in the browser you should set the dns wildcard for domain \*.example.com and it should point to your nginx proxy
 
+Performance testing Hipache vs NGINX
+-------------------------------------
 
+```
+
+```
 
 
 VHOST Configuration
