@@ -57,11 +57,78 @@ Usage
 
 Performance testing Hipache vs NGINX
 -------------------------------------
+Testing scenario:
+* at front sits haproxy and do routing between two backends: hipache.ermlab.com and nginx.ermlab.com
+* haproxy redirects traffic from \*.hipache.ermlab.com to hipache proxy and \*.nginx.ermlab.com to nginx-lua-proxy
+* haproxy, hipache, nginx-lua-proxy and redis are installed on the same server (proxy server)
+* there is one simple static website, it is available at 192.168.0.10  (web server)
+* redis contains two dynamic backends both point to the same website (192.168.0.10)
+    * host for hipache: id1.hipache.ermlab.com->192.168.0.10
+    * host for nginx-lua-proxy: id1.nginx.ermlab.com->192.168.0.10
+* software runs as docker containers: redis, hipache, nginx-lua-proxy
+* proxy server and web server have 2CPUs and 2GB RAM
+
+Testing with apache benchmark
 
 ```
-
+ab -n 20000 -c 200 http://id1.hipache.ermlab.com
+ab -n 20000 -c 200 http://id1.nginx.ermlab.com
 ```
 
+## Results
+
+Parameter  | Hipache | Nginx-lua-proxy
+-------------: | :-------------|:----------
+Concurrency Level:     | 200 | 200
+Time taken for tests:  | 57.446 seconds | 14.951 seconds
+Complete requests:     | 20000 | 20000  
+Failed requests:       | 0 | 0
+Write errors:          | 0 | 0
+Total transferred:     | 6500000 bytes | 6380000 bytes
+HTML transferred:      |2680000 bytes | 2560000 bytes
+Requests per second:   | **348.15 [#/sec] (mean)** | **1337.68 [#/sec] (mean)**
+Time per request:      | 348.464 [ms] (mean) | 149.513 [ms] (mean)
+Time per request:      | 2.872 [ms] | 0.748 [ms]
+Transfer rate:         | 110.50 [Kbytes/sec] | 416.65 [Kbytes/sec]
+
+
+### Hipache - connection times
+
+
+
+Connection Times (ms) |  min | mean |[+/-sd] | median |  max
+------------|------|---|------|-------|---------------            
+Connect:    |   0  |20 | 362.2 |      1  |  7001
+Processing: |    4 | 456 | 653.2 |   398 |   15349
+Waiting:    |    3 | 453 | 653.3 |    395 |   15349
+Total:      |    5 | 477 | 744.6 |    400 |  15350
+
+
+
+ ### Nginx-lua-proxy - connection times
+
+ Connection Times (ms) |  min | mean |[+/-sd] | median |  max
+ ------------|------|---|------|-------|---------------   
+ Connect:     |   0 |   1 |   0.5 |     1 |     16
+ Processing:  |  40 | 143 | 197.9 |   110 |   3297
+ Waiting:     |  40 | 143 | 197.9 |   110 |   3297
+ Total:       |  46 | 144 | 197.9 |   111 |   3298
+
+
+ Percentage of the requests served within a certain time (ms)
+
+ |Hipache | Nginx-lua-proxy
+ ---|-----|--------------
+   50%  |  400 |  111
+   66%  |  484 |  120
+   75%  |  546 |  126
+   80%  |  584 |  129
+   90%  |  687 |  138
+   95%  |  794 |  152
+   98%  |  897 | 1098
+   99%  | 1032 | 1115
+  100% (longest request) |15350 |  3298 
+  
 
 VHOST Configuration
 -------------------
