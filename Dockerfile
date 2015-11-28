@@ -65,13 +65,11 @@ RUN wget https://github.com/openresty/lua-nginx-module/archive/v${VER_LUA_NGINX_
 #Download openresty libs
 RUN wget https://github.com/openresty/lua-resty-redis/archive/v${VER_LUA_RESTY_REDIS}.tar.gz -O ${LUA_RESTY_REDIS}.tar.gz
 
-
 # Untar
 RUN tar -xzvf nginx-${VER_NGINX}.tar.gz && rm nginx-${VER_NGINX}.tar.gz
 RUN tar -xzvf LuaJIT-${VER_LUAJIT}.tar.gz && rm LuaJIT-${VER_LUAJIT}.tar.gz
 RUN tar -xzvf ${NGINX_DEVEL_KIT}.tar.gz && rm ${NGINX_DEVEL_KIT}.tar.gz
 RUN tar -xzvf ${LUA_NGINX_MODULE}.tar.gz && rm ${LUA_NGINX_MODULE}.tar.gz
-
 
 #Lua LIBS
 RUN tar -xzvf ${LUA_RESTY_REDIS}.tar.gz && rm ${LUA_RESTY_REDIS}.tar.gz
@@ -110,6 +108,5 @@ RUN rm -rf /${LUA_NGINX_MODULE}
 copy nginx.conf /nginx/conf/nginx.conf
 copy nginx-lua.conf /nginx/conf/nginx-lua.conf
 
-# This is the default CMD used by nginx:1.9.2 image
-#CMD ["nginx", "-g", "daemon off;"]
+# Run nginx and dnsmasq under supervisor
 CMD ["/usr/bin/supervisord"]
