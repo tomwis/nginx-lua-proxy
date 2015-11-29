@@ -1,5 +1,5 @@
-nginx-lua-proxy - dockerized Nginx+Lua dynamic proxy with redis store for backends
-=========
+# nginx-lua-proxy - dockerized Nginx+Lua dynamic proxy with redis store for backends
+
 
 ![Docker stars](https://img.shields.io/docker/stars/ermlab/nginx-lua-proxy.png "Docker stars")
 &nbsp;
@@ -18,8 +18,8 @@ This procject is based on wonderfull projects:
 * https://github.com/danday74/docker-nginx-lua
 * https://github.com/samalba/hipache-nginx
 
-Usage
------
+## Usage
+
 
 1. Run REDIS database, it is essential to name it **redis**, because the lua resty redis connection objects relies on hostname=redis,
 
@@ -55,8 +55,8 @@ Usage
 
 5. If you want to test in the browser you should set the dns wildcard for domain \*.example.com and it should point to your nginx proxy
 
-Performance testing Hipache vs NGINX
--------------------------------------
+## Performance testing Hipache vs NGINX
+
 Testing scenario:
 * at front sits haproxy and do routing between two backends: hipache.ermlab.com and nginx.ermlab.com
 * haproxy redirects traffic from \*.hipache.ermlab.com to hipache proxy and \*.nginx.ermlab.com to nginx-lua-proxy
@@ -75,7 +75,7 @@ ab -n 20000 -c 200 http://id1.hipache.ermlab.com
 ab -n 20000 -c 200 http://id1.nginx.ermlab.com
 ```
 
-## Results
+### Results
 
 Parameter  | Hipache | Nginx-lua-proxy
 -------------: | :-------------|:----------
@@ -131,8 +131,8 @@ Total:      |    5 | 477 | 744.6 |    400 |  15350
   100% (longest request) |15350 |  3298
 
 
-VHOST Configuration
--------------------
+## VHOST Configuration
+
 
 All VHOST configuration is managed through a REDIS. This makes it possible to update the configuration
 dynamically and gracefully while the server is running, and have that state
@@ -170,8 +170,8 @@ The frontend identifer is `mywebsite`, it could be anything.
 While the server is running, any of these steps can be re-run without messing up
 with the traffic.
 
-Automated
----------
+## Automated
+
 
 The master branch on the github repo is watched by an automated docker build
 
@@ -179,13 +179,13 @@ Which builds docker image **ermlab/nginx-lua** on push to master
 
 On success, the docker build triggers the docker repo's webhooks (if any)
 
-Maintainers
--------------
+## Maintainers
+
 * [Ermlab software house](http://ermlab.com)
     * Krzysztof Sopyła (sopyla@ermlab.com)
 
-License
--------
+## License
+
 
 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
