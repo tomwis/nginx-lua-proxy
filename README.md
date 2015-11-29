@@ -105,7 +105,8 @@ Total:      |    5 | 477 | 744.6 |    400 |  15350
 
 
 
- ### Nginx-lua-proxy - connection times
+### Nginx-lua-proxy - connection times
+
 
  Connection Times (ms) |  min | mean |[+/-sd] | median |  max
  ------------|------|---|------|-------|---------------   
