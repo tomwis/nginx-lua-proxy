@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE=ermlab/nginx-lua
+IMAGE=ermlab/nginx-lua-proxy
 TAG='latest'
 CONTAINER_NAME=proxy-nginx-lua
 

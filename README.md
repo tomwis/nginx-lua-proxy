@@ -30,7 +30,7 @@ This procject is based on wonderfull projects:
 2. Run nginx-lua-proxy container and linked it with redis
 
     ```
-    docker run -d --link redis:redis -p 9090:80 --name $CONTAINER_NAME $IMAGE
+    docker run -d --link redis:redis -p 9090:80 --name $CONTAINER_NAME ermlab/nginx-lua-proxy
     ```
 
 

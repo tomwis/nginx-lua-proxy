@@ -4,10 +4,11 @@
 # To build:
 #
 # 1) Install docker (http://docker.io)
-# 2) Clone Nginx-Hipache repo if you haven't already: git clone
-# 3) Build: cd ...... && docker build .
+# 2) Clone nginx-lua-proxy repo if you haven't already:
+     git clone https://github.com/Ermlab/nginx-lua-proxy.git
+# 3) Build: cd nginx-lua-proxy && docker build .
 # 4) Run: docker run -d --name redis redis
-# 5) Run: docker run -d --link redis:redis -P <hipache_image_id>
+# 5) Run: docker run -d --link redis:redis -P nginx-lua-proxy
 
 FROM ubuntu:14.04
 MAINTAINER Krzysztof Sopyła <sopyla@ermlab.com>
