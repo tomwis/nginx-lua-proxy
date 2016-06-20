@@ -77,20 +77,24 @@ ab -n 20000 -c 200 http://id1.nginx.ermlab.com
 
 ### Results
 
+
+
 Parameter  | Hipache | Nginx-lua-proxy
 -------------: | :-------------|:----------
 Concurrency Level:     | 200 | 200
-Time taken for tests:  | 57.446 seconds | 14.951 seconds
+*Time taken for tests:  | 57.446 seconds | 14.951 seconds
 Complete requests:     | 20000 | 20000  
 Failed requests:       | 0 | 0
 Write errors:          | 0 | 0
 Total transferred:     | 6500000 bytes | 6380000 bytes
 HTML transferred:      |2680000 bytes | 2560000 bytes
-Requests per second:   | **348.15 \[#/sec\] (mean)** | **1337.68 \[#/sec\] (mean)**
-Time per request:      | 348.464 [ms] (mean) | 149.513 [ms] (mean)
+**Requests per second:   | **348.15 \[#/sec\] (mean)** | **1337.68 \[#/sec\] (mean)**
+*Time per request:      | 348.464 [ms] (mean) | 149.513 [ms] (mean)
 Time per request:      | 2.872 [ms] | 0.748 [ms]
 Transfer rate:         | 110.50 [Kbytes/sec] | 416.65 [Kbytes/sec]
 
+*Lower is better
+** Higher is better 
 
 ### Hipache - connection times
 
@@ -182,7 +186,7 @@ On success, the docker build triggers the docker repo's webhooks (if any)
 ## Maintainers
 
 * [Ermlab software house](http://ermlab.com)
-    * Krzysztof Sopyła (sopyla@ermlab.com)
+    * [Krzysztof Sopyła](https://github.com/ksopyla) (sopyla@ermlab.com)
 
 ## License
 
