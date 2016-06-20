@@ -94,7 +94,8 @@ Time per request:      | 2.872 [ms] | 0.748 [ms]
 Transfer rate:         | 110.50 [Kbytes/sec] | 416.65 [Kbytes/sec]
 
 *Lower is better
-** Higher is better 
+
+**Higher is better 
 
 ### Hipache - connection times
 
